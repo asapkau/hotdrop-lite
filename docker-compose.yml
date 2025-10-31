@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    container_name: hotdrop_db
+    restart: always
+    environment:
+      POSTGRES_USER: hotdrop
+      POSTGRES_PASSWORD: hotdrop
+      POSTGRES_DB: hotdrop_dev
+    ports:
+      - "55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: hotdrop_cache
+    ports:
+      - '6379:6379'
+    restart: always
+
+volumes:
+  pgdata:
